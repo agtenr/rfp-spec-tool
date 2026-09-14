@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Award Model Simulator</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Award Model Simulator <span class="badge" id="gate-badge">Gate 1</span></h1>
+    <p class="sub">Reproduces a procurement's published award methodology and replays it against the
+      bidder's cost structure — <em>which solution architecture can we afford in points</em>.</p>
+  </header>
+
+  <section class="controls">
+    <label>Dossier config:
+      <input type="text" id="config-url" value="../dossiers/golden/config.json" size="40" />
+    </label>
+    <button id="run-btn">Run</button>
+    <label class="file-pick">or load a file:
+      <input type="file" id="config-file" accept="application/json,.json" />
+    </label>
+    <button id="csv-btn" disabled>Download CSV</button>
+  </section>
+
+  <div id="status" class="status"></div>
+  <main id="report" aria-live="polite"></main>
+
+  <footer>
+    <small>Serve over http (the <code>serve</code> skill) — ES modules and fetch require an http origin.
+      Figures marked DERIVED or SIMULATED are not measured.</small>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
