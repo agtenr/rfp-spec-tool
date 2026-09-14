@@ -1,0 +1,37 @@
+{
+  "tracker": "file",
+  "trackerDir": ".aind/items",
+  "ado": {
+    "org": "https://dev.azure.com/<your-ado-org>",
+    "project": "<your-ado-project>",
+    "repo": "<your-ado-repo>",
+    "workItemType": "User Story"
+  },
+  "codeHost": "github",
+  "github": {
+    "repo": "<owner>/<repo>"
+  },
+  "integrationBranch": "main",
+  "planBranchPrefix": "aind/plan/",
+  "lessonsBranch": "aind/lessons",
+  "telemetry": {
+    "enabled": false,
+    "durationField": "Custom.AindDurationSec"
+  },
+  "stateMap": {},
+  "planning": {
+    "mode": "auto"
+  },
+  "research": {
+    "dir": ".aind/research"
+  },
+  "worktree": {
+    "enabled": false,
+    "worktreeRoot": ".claude/worktrees",
+    "copyFiles": [
+      ".claude/aind.env",
+      ".claude/settings.local.json"
+    ],
+    "symlinkDirs": []
+  }
+}
