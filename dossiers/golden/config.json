@@ -1,0 +1,125 @@
+{
+  "dossierId": "GOLDEN",
+  "configurationVersion": "1.0.0",
+  "sourceMethodologyVersion": "synthetic-golden-9.3",
+  "createdAt": "2026-09-14T00:00:00Z",
+  "createdBy": "engine-validation",
+  "currency": "EUR",
+  "calculationPrecision": 6,
+  "displayPrecision": 2,
+  "roundingMode": "HALF_UP",
+  "evaluationHorizon": 6,
+  "periodUnit": "YEAR",
+  "validationGate": "GATE_1",
+  "confidentialityClassification": "SYNTHETIC — no real dossier data (AR-04)",
+  "methodology": {
+    "archetypeReference": "LOWEST_PRICE_RATIO",
+    "pricePointsMax": "40",
+    "qualityPointsMax": "60",
+    "totalPointsMax": "100",
+    "exclusionRule": {
+      "level": "TOTAL_QUALITY",
+      "thresholdValue": "50",
+      "thresholdBasis": "PERCENT_OF_MAX",
+      "operator": "GTE"
+    },
+    "sourceLayer": "base"
+  },
+  "qualityCriteria": [
+    { "id": "q1", "name": "Overall quality", "inputScaleMax": "100", "weightedPointsMax": "60", "isExclusionCriterion": false, "sourceLayer": "base" }
+  ],
+  "rates": [
+    { "profileCategory": "project_manager", "amount": "100.00", "outsideBusinessHours": false, "provenance": "SIMULATED" },
+    { "profileCategory": "consultant", "amount": "90.00", "outsideBusinessHours": false, "provenance": "SIMULATED" },
+    { "profileCategory": "developer_junior", "amount": "60.00", "outsideBusinessHours": false, "provenance": "SIMULATED" },
+    { "profileCategory": "developer_senior", "amount": "110.00", "outsideBusinessHours": false, "provenance": "SIMULATED" },
+    { "profileCategory": "outside_business_hours", "amount": "150.00", "outsideBusinessHours": true, "provenance": "SIMULATED" }
+  ],
+  "referenceSet": {
+    "ownVariantCountsInReferenceSet": true,
+    "excludedBidsCountInReferenceSet": false
+  },
+  "imposedBasket": {
+    "periodicity": "ONCE_OVER_HORIZON",
+    "lines": [
+      { "profileCategory": "project_manager", "quantity": { "value": 150, "unit": "HOUR" } },
+      { "profileCategory": "consultant", "quantity": { "value": 150, "unit": "HOUR" } },
+      { "profileCategory": "developer_junior", "quantity": { "value": 500, "unit": "HOUR" } },
+      { "profileCategory": "developer_senior", "quantity": { "value": 350, "unit": "HOUR" } },
+      { "profileCategory": "outside_business_hours", "quantity": { "value": 100, "unit": "HOUR" } }
+    ]
+  },
+  "populationStates": [
+    {
+      "id": "INITIAL",
+      "name": "Initial",
+      "isApplicableToAllPeriods": true,
+      "segments": [
+        { "id": "staff", "name": "Staff and PhD students", "count": 4000, "entitlementNotes": "" }
+      ]
+    },
+    {
+      "id": "GROWN",
+      "name": "Grown",
+      "isApplicableToAllPeriods": true,
+      "segments": [
+        { "id": "staff", "name": "Staff and PhD students", "count": 4000, "entitlementNotes": "" },
+        { "id": "students", "name": "Students", "count": 20000, "entitlementNotes": "" }
+      ]
+    }
+  ],
+  "bidVariants": [
+    {
+      "id": "A",
+      "name": "Platform-native",
+      "costComponentValues": [
+        { "id": "impl", "name": "Implementation", "type": "FIXED", "periodicity": "ONE_OFF", "applicableSegments": "ALL", "amount": "100000.00", "obligation": "REQUIRED_BY_SPEC", "provenance": "SIMULATED" },
+        { "id": "licence", "name": "Licence", "type": "PER_USER", "periodicity": "PER_USER_PER_PERIOD", "applicableSegments": "ALL", "amount": "0.00", "obligation": "REQUIRED_BY_SPEC", "provenance": "SIMULATED" },
+        { "id": "other_recurring", "name": "Other recurring", "type": "OTHER", "periodicity": "PER_PERIOD", "applicableSegments": "ALL", "amount": "5000.00", "obligation": "REQUIRED_BY_SPEC", "provenance": "SIMULATED" }
+      ],
+      "rateSet": [],
+      "qualityAssumptions": [
+        { "criterionReference": "q1", "assumedRawScore": "70", "owner": "bid-manager" }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Product-based",
+      "costComponentValues": [
+        { "id": "impl", "name": "Implementation", "type": "FIXED", "periodicity": "ONE_OFF", "applicableSegments": "ALL", "amount": "80000.00", "obligation": "REQUIRED_BY_SPEC", "provenance": "SIMULATED" },
+        { "id": "licence", "name": "Licence", "type": "PER_USER", "periodicity": "PER_USER_PER_PERIOD", "applicableSegments": "ALL", "amount": "2.00", "obligation": "REQUIRED_BY_SPEC", "provenance": "SIMULATED" },
+        { "id": "other_recurring", "name": "Other recurring", "type": "OTHER", "periodicity": "PER_PERIOD", "applicableSegments": "ALL", "amount": "3000.00", "obligation": "REQUIRED_BY_SPEC", "provenance": "SIMULATED" }
+      ],
+      "rateSet": [],
+      "qualityAssumptions": [
+        { "criterionReference": "q1", "assumedRawScore": "80", "owner": "bid-manager" }
+      ]
+    }
+  ],
+  "competitors": [
+    {
+      "id": "C",
+      "name": "Competitor archetype",
+      "pricingMode": "DIRECT_PRICE",
+      "comparisonPrice": "230000.00",
+      "qualityAssumptions": [
+        { "criterionReference": "q1", "assumedRawScore": "55", "owner": "bid-manager" }
+      ]
+    }
+  ],
+  "competitiveField": {
+    "id": "field-1",
+    "name": "Main field",
+    "ownVariantCountsInReferenceSet": true,
+    "excludedBidsCountInReferenceSet": false,
+    "entries": [
+      { "participantReference": "A", "multiplicity": 1, "eligibilityStatus": "ELIGIBLE" },
+      { "participantReference": "B", "multiplicity": 1, "eligibilityStatus": "ELIGIBLE" },
+      { "participantReference": "C", "multiplicity": 1, "eligibilityStatus": "ELIGIBLE" }
+    ]
+  },
+  "ambiguities": [],
+  "assumptions": [],
+  "expectedConsumption": null,
+  "budgetEnvelope": null
+}
