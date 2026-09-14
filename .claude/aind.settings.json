@@ -9,7 +9,7 @@
   },
   "codeHost": "github",
   "github": {
-    "repo": "<owner>/<repo>"
+    "repo": "agtenr/rfp-spec-tool"
   },
   "integrationBranch": "main",
   "planBranchPrefix": "aind/plan/",
