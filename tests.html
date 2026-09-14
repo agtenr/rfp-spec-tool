@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Award Model Simulator — §9 validation suite</title>
+  <style>
+    body { font: 14px/1.5 system-ui, sans-serif; margin: 2rem; color: #1a1a1a; }
+    h1 { font-size: 1.2rem; }
+    #summary { font-weight: 700; padding: .5rem .75rem; border-radius: 6px; margin: 1rem 0; }
+    #summary.pass { background: #e6f4ea; color: #14663a; }
+    #summary.fail { background: #fce8e6; color: #a50e0e; }
+    pre { background: #f6f8fa; padding: 1rem; border-radius: 6px; overflow: auto; white-space: pre-wrap; }
+    .pass-line { color: #14663a; }
+    .fail-line { color: #a50e0e; }
+  </style>
+</head>
+<body>
+  <h1>Award Model Simulator — §9 validation suite</h1>
+  <p>Golden worked example (§9.3), invariants (§9.2, IN-01…07) and boundary/failure cases (§9.4).
+     Serve over http (the <code>serve</code> skill) — ES modules and fetch require an http origin.</p>
+  <div id="summary">Running…</div>
+  <pre id="output"></pre>
+  <script type="module">
+    import './tests/golden.test.js';
+    import './tests/invariants.test.js';
+    import './tests/boundary.test.js';
+    import './tests/ambiguity-envelope.test.js';
+    import './tests/reporters.test.js';
+    import { run } from './tests/harness.js';
+
+    const output = document.getElementById('output');
+    const summary = document.getElementById('summary');
+    const logger = (line) => {
+      const div = document.createElement('div');
+      if (line.trimStart().startsWith('PASS')) div.className = 'pass-line';
+      if (line.trimStart().startsWith('FAIL')) div.className = 'fail-line';
+      div.textContent = line;
+      output.appendChild(div);
+    };
+    const { passed, failed, total } = await run(logger);
+    summary.textContent = `${passed} passed, ${failed} failed, ${total} total`;
+    summary.className = failed === 0 ? 'pass' : 'fail';
+  </script>
+</body>
+</html>
